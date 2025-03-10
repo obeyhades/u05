@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node build/server.js",
     "build": "tsc",
-    "dev": "nodemon src/server.ts",
+    "dev": "nodemon build_TS/src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
