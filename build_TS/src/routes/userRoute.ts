@@ -1,23 +1,10 @@
-import express  from "express";
+import express, {Request, Response } from "express";
 import { userModel } from "../models/userModels"
+import { createUser, deleteUser } from "../controllers/userControllers";
 
 const router = express.Router()
 
-router.post("/", async (req: any, res: any) => {
-    const {username} = req.body
-
-    try {
-        const existingUser = await userModel.findOne({ username })
-        if (existingUser) {
-            return res.status(400).json({ message: "user exist"})
-            
-        }
-        const newUser = new userModel({ username })
-        await newUser.save()
-    } catch (error) {
-        console.error(error);
-    } 
-})
-
+router.post("/", createUser)
+router.delete("/", deleteUser)
 
 export { router as userRouter }
