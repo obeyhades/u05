@@ -2,6 +2,7 @@ import express, {Express, Request, Response } from "express";
 import mongoose from "mongoose";
 import { userRouter } from "./routes/userRoute";
 
+
 const app: Express = express();
 const PORT: string| number = process.env.PORT || 8080;
 
@@ -13,6 +14,7 @@ app.get("/", (req: Request, res: Response)=>{
 })
 
 app.use("/user", userRouter)
+
 
 mongoose.connect("mongodb+srv://ObeyHades:Hejsan145@u05.vlb7i.mongodb.net/")
 
