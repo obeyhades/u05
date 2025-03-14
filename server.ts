@@ -1,10 +1,14 @@
 import express, {Express, Request, Response } from "express";
 import mongoose from "mongoose";
+import connectDB from "./db";
 import dotenv from "dotenv";
 import { userRouter } from "./src/routes/userRoute";
 import cors from "cors";
 
+
+
 dotenv.config();
+connectDB();
 
 const app: Express = express();
 const PORT: string| number = process.env.PORT || 8080;
