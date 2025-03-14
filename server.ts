@@ -1,13 +1,23 @@
 import express, {Express, Request, Response } from "express";
 import mongoose from "mongoose";
-import { userRouter } from "./routes/userRoute";
+import dotenv from "dotenv";
+import { userRouter } from "./src/routes/userRoute";
+import cors from "cors";
 
+dotenv.config();
 
 const app: Express = express();
 const PORT: string| number = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(express.urlencoded ({extended: true}));
+app.use(cors({
+
+    origin: "http://localhost:8080",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+
+}
+));
 
 app.get("/", (req: Request, res: Response)=>{
     res.send("Test");
