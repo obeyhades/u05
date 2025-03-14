@@ -64,4 +64,8 @@ const deleteUser = async (req: Request, res: Response): Promise<void> => {
   res.json(deleteUser);
 };
 
+
+
+
+
 export { deleteUser, createUser, getUsers, getUserById, updateUser };
