@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import { incomeModels } from "../models/incomeModels";
 import { Request, Response } from "express";
+import { deleteUser } from "./userControllers";
 
 //create income
 const createIncome = async (req: Request, res: Response): Promise<void> => {
@@ -33,7 +34,11 @@ const getUserIncome = async (req: Request, res: Response): Promise<void> => {
 const updateIncome = async (req: Request, res: Response): Promise<void> => {
   const { incomeId } = req.params;
   try {
-    const updateIncome = await incomeModels.findByIdAndUpdate(incomeId,req.body, { new: true });
+    const updateIncome = await incomeModels.findByIdAndUpdate(
+      incomeId,
+      req.body,
+      { new: true }
+    );
 
     if (!updateIncome) {
       res.status(404).json({ message: "Income not found" });
@@ -41,9 +46,26 @@ const updateIncome = async (req: Request, res: Response): Promise<void> => {
 
     res.json(updateIncome);
   } catch (error) {
-    res.status(500).json({ message: "Could not update income" }); 
+    res.status(500).json({ message: "Could not update income" });
   }
 };
 
+//Delete income
+const deleteIncome = async (req: Request, res: Response): Promise<void> => {
+  const { incomeId } = req.params;
+  console.log(incomeId);
 
-export { createIncome, getUserIncome, updateIncome };
+  try {
+    const deleteIncome = await incomeModels.findByIdAndDelete(incomeId);
+
+    if (!deleteIncome) {
+      res.status(404).json({ message: "Income not found" });
+    }
+ 
+    res.json({ message: "income deleted", income: deleteIncome });
+  } catch (error) {
+    res.status(500).json({ message: "Could not delete income" });
+  }
+};
+
+export { createIncome, getUserIncome, updateIncome, deleteIncome };

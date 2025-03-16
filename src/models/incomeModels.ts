@@ -7,4 +7,4 @@ const incomeSchema = new mongoose.Schema({
 
 }, { timestamps: true });
 
-export const incomeModels = mongoose.model("income", incomeSchema);
+export const incomeModels = mongoose.model("income", incomeSchema);  
