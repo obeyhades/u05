@@ -39,14 +39,16 @@ const getUserById = async (req: Request, res: Response): Promise<void> => {
     if (!user) res.status(404).json({ message: "User not found! " });
     res.json(user);
   } catch (error) {
-    res.status(500).json({ message: "Could not fetch user! " });
+    res.status(500).json({  message: "Could not fetch user!" });
   }
 };
 
 //Update user
 const updateUser = async (req: Request, res: Response): Promise<void> => {
   try {
-    const user = await userModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
+    const user = await userModel.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     if (!user) res.status(404).json({ message: "Could not edit user!" });
     res.json(user);
   } catch (error) {
@@ -63,9 +65,5 @@ const deleteUser = async (req: Request, res: Response): Promise<void> => {
   console.log(deleteUser);
   res.json(deleteUser);
 };
-
-
-
-
 
 export { deleteUser, createUser, getUsers, getUserById, updateUser };
