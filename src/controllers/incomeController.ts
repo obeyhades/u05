@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { incomeModels } from "../models/incomeModels";
 import { Request, Response } from "express";
-import { deleteUser } from "./userControllers";
+
 
 //create income
 const createIncome = async (req: Request, res: Response): Promise<void> => {

@@ -6,7 +6,6 @@ import { userRouter } from "./src/routes/userRoute";
 import { userIncome } from "./src/routes/userIncome"
 
 
-
 import cors from "cors";
 
 dotenv.config();
@@ -26,6 +25,7 @@ app.use(
 
 app.use("/user", userRouter);
 app.use ("/income", userIncome)
+
 
 mongoose.connect("mongodb+srv://ObeyHades:Hejsan145@u05.vlb7i.mongodb.net/");
 
