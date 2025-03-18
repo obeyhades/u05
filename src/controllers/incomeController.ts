@@ -3,6 +3,7 @@ import { incomeModels } from "../models/incomeModels";
 import { Request, Response } from "express";
 
 
+
 //create income
 const createIncome = async (req: Request, res: Response): Promise<void> => {
   const { userId, amount, category } = req.body;
@@ -21,9 +22,10 @@ const createIncome = async (req: Request, res: Response): Promise<void> => {
 //get income
 
 const getUserIncome = async (req: Request, res: Response): Promise<void> => {
-  const { userId } = req.body;
+  const { userId } = req.params;
+    
   try {
-    const incomes = await incomeModels.find(userId);
+    const incomes = await incomeModels.find({ userId: userId });
     res.json(incomes);
   } catch (error) {
     res.status(500).json({ message: "error, could not find incomes!" });
@@ -33,6 +35,7 @@ const getUserIncome = async (req: Request, res: Response): Promise<void> => {
 //update user income
 const updateIncome = async (req: Request, res: Response): Promise<void> => {
   const { incomeId } = req.params;
+
   try {
     const updateIncome = await incomeModels.findByIdAndUpdate(
       incomeId,
@@ -50,7 +53,7 @@ const updateIncome = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-//Delete income
+//delete income
 const deleteIncome = async (req: Request, res: Response): Promise<void> => {
   const { incomeId } = req.params;
   console.log(incomeId);
@@ -61,7 +64,7 @@ const deleteIncome = async (req: Request, res: Response): Promise<void> => {
     if (!deleteIncome) {
       res.status(404).json({ message: "Income not found" });
     }
- 
+
     res.json({ message: "income deleted", income: deleteIncome });
   } catch (error) {
     res.status(500).json({ message: "Could not delete income" });

@@ -4,9 +4,12 @@ import connectDB from "./db";
 import dotenv from "dotenv";
 import { userRouter } from "./src/routes/userRoute";
 import { userIncome } from "./src/routes/userIncome"
+import { expenseRoutes } from "./src/routes/userExpense";
 
 
 import cors from "cors";
+import { savingGoalRoutes } from "./src/routes/userSaving";
+
 
 dotenv.config();
 connectDB();
@@ -25,6 +28,8 @@ app.use(
 
 app.use("/user", userRouter);
 app.use ("/income", userIncome)
+app.use ("/expense", expenseRoutes)
+app.use ("/savingGoals", savingGoalRoutes)
 
 
 mongoose.connect("mongodb+srv://ObeyHades:Hejsan145@u05.vlb7i.mongodb.net/");
