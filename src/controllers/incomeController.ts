@@ -2,8 +2,6 @@ import mongoose from "mongoose";
 import { incomeModels } from "../models/incomeModels";
 import { Request, Response } from "express";
 
-
-
 //create income
 const createIncome = async (req: Request, res: Response): Promise<void> => {
   const { userId, amount, category } = req.body;
@@ -23,12 +21,13 @@ const createIncome = async (req: Request, res: Response): Promise<void> => {
 
 const getUserIncome = async (req: Request, res: Response): Promise<void> => {
   const { userId } = req.params;
-    
+
   try {
     const incomes = await incomeModels.find({ userId: userId });
     res.json(incomes);
   } catch (error) {
     res.status(500).json({ message: "error, could not find incomes!" });
+    return;
   }
 };
 
@@ -66,6 +65,7 @@ const deleteIncome = async (req: Request, res: Response): Promise<void> => {
     }
 
     res.json({ message: "income deleted", income: deleteIncome });
+    return;
   } catch (error) {
     res.status(500).json({ message: "Could not delete income" });
   }
