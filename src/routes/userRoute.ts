@@ -1,20 +1,24 @@
-import express, {Request, Response } from "express";
-import { userModel } from "../models/userModels"
-import { createUser, deleteUser, getUsers, getUserById,updateUser, } from "../controllers/userControllers";
-import { logIn } from "../controllers/login"
+import express, { Request, Response } from "express";
+import {
+  createUser,
+  deleteUser,
+  getUsers,
+  getUserById,
+  updateUser,
+} from "../controllers/userControllers";
+import  logIn  from "../controllers/login";
+import authenticateToken from "../middleware/authenticateToken";
 
-const router = express.Router()
-
-router.get("/")
-router.post("/", createUser)
-router.get("/", getUsers)
-router.get('/:id', getUserById)
-router.put("/:id", updateUser)
-router.delete("/", deleteUser)
-
+const router = express.Router();
 
 
-router.post("/login", logIn)
+router.post("/", createUser);
+router.get("/", authenticateToken, getUsers);
+router.get("/:id",authenticateToken, getUserById);
+router.put("/:id",authenticateToken, updateUser);
+router.delete("/",authenticateToken, deleteUser);
+
+router.post("/login", logIn);
 
 
-export { router as userRouter }
+export { router as userRouter }; 
