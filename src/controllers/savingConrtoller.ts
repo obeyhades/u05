@@ -1,10 +1,12 @@
 import mongoose from "mongoose";
 import { Request, Response } from "express";
 import { savingModels } from "../models/savingModels";
+import { userReq } from "../middleware/authenticateToken";
 
 //create saving
-const createSaving = async (req: Request, res: Response): Promise<void> => {
-  const { userId, goalName, targetAmount, currentSavings } = req.body;
+const createSaving = async (req: userReq, res: Response): Promise<void> => {
+  const { goalName, targetAmount, currentSavings } = req.body;
+  const userId = req.userId
 
   try {
     const newGoal = new savingModels({

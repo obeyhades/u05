@@ -4,7 +4,6 @@ import { log } from "node:console";
 import { AnyARecord } from "node:dns";
 import { register } from "node:module";
 import test from "node:test";
-
 interface decodedToken {
     user: {
         _id: string,
@@ -19,8 +18,12 @@ interface decodedToken {
 
 }
 
+export interface userReq extends Request  {
+    userId?: string
+}
 
-   export const  authenticateToken = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+
+export const  authenticateToken = async (req: userReq, res: Response, next: NextFunction): Promise<void> => {
     
     
     const authHeader =req.headers.authorization
@@ -38,7 +41,7 @@ interface decodedToken {
     try{
         const verifiedToken = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET || "");
 
-       req.user= (verifiedToken as decodedToken).user
+       req.userId= (verifiedToken as decodedToken).user._id
        next()
     } catch (error) {
         res.status(403).json({ message: "Invalid token" }); 
