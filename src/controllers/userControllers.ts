@@ -22,7 +22,7 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
       res.status(201).json({ message: "user exist", user: req.user});
       return;
     }
-
+      // add if dont exist "e!exist"
     const newUser = new userModel({ username, email, password: hashedPassword });
     await newUser.save();
     res.json(newUser);
@@ -51,7 +51,7 @@ const getUserById = async (req: Request, res: Response): Promise<void> => {
   } catch (error) {
     res.status(500).json({ message: "Could not fetch user!" });
   }
-};
+}; 
 
 //Update user
 const updateUser = async (req: Request, res: Response): Promise<void> => {
@@ -69,8 +69,8 @@ const updateUser = async (req: Request, res: Response): Promise<void> => {
 
 // Removes a user 
 const deleteUser = async (req: Request, res: Response): Promise<void> => {
-  const { userid } = req.body;
-  console.log(userid);
+  const  userid  = req.params.id;
+ 
 
   const deleteUser = await userModel.findByIdAndDelete(userid);
   console.log(deleteUser);
