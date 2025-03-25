@@ -3,10 +3,14 @@ import { userModel } from "../models/userModels";
 import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { log } from "node:console";
 
 const logIn = async (req: Request, res: Response): Promise<void> => {
   const { username } = req.body;
-
+ console.log(username);
+ console.log(req.body.password);
+ 
+ 
   try {
     const user = await userModel.findOne({ username });
     if (!user) {
