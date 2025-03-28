@@ -1,5 +1,7 @@
 # Restful API - Financal tracker
 
+I have chosen to create an API that is a finance tracker. In the API, users will be able to create an account (register). They will be able to add their income, expenses, and saving goals.
+
 ## 1. Objekt Modeling
 
 ### Databasstruktur
@@ -103,9 +105,40 @@
         "date": "Today at 09:00 but today"
     }
 };
+```
+---
+API cURL Documentation
+This documentation provides an example on how cURL could be used and how to interact with my API. 
 
-____________________________________fix me____________________________________________________
+Register a new user
+```
+curl -X POST "https://moneytracker-hw96.onrender.com/user" \
+     -H "Content-Type: application/json" \
+     -d '{"username": "testuser", "password": "password123", "email": "testuser@gmail.com"}' 
+```
 
-cURL: DDD
+Loging in
+```
+curl -X POST http://localhost:8080/user/login \
+     -H "Content-Type: application/json" \
+     -d '{"username": "hej123", "password": "Hejsan123" }'
+```
+Get user
+```
+curl -X GET "https://moneytracker-hw96.onrender.com/user/67e2b83d8af4b08ff53f8cb8" \
+     -H "Authorization: Bearer <Your_Access_Token>"
+```
 
-refine me 2 thanks
+Delete user
+```
+usercurl -X DELETE "https://moneytracker-hw96.onrender.com/user/67e2b83d8af4b08ff53f8cb8" \
+     -H "Authorization: Bearer <Your_Access_Token>"
+```
+
+Update user
+```
+curl -X PUT "https://moneytracker-hw96.onrender.com/user/67e29ff7a3d70fa73b95142a" \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer <Your_Access_Token>" \
+     -d '{"username":"testuser1"}'
+```
