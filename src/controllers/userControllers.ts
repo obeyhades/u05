@@ -71,7 +71,7 @@ const updateUser = async (req: Request, res: Response): Promise<void> => {
 const deleteUser = async (req: Request, res: Response): Promise<void> => {
   const  userid  = req.params.id;
  
-
+  // add error code
   const deleteUser = await userModel.findByIdAndDelete(userid);
   console.log(deleteUser);
   res.json(deleteUser);
