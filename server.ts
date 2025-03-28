@@ -12,13 +12,13 @@ dotenv.config();
 connectDB();
 
 const app: Express = express();
-const PORT: string | number = process.env.PORT || 8080;
+const PORT: string | number = process.env.PORT || 8000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:8080",
+    origin: "http://localhost:8000",
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );

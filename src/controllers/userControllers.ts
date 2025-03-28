@@ -35,7 +35,8 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
 const getUsers = async (req: Request, res: Response): Promise<void> => {
   const { getUsers } = req.body;
   try {
-    const users = await userModel.find(getUsers);
+    const limit = parseInt(req.query.limit as string) || 0; 
+    const users = await userModel.find(getUsers).limit(limit);
     res.json(users);
   } catch (error) {
     res.status(500).json({ message: "error, could not find users!" });

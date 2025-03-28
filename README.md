@@ -73,7 +73,7 @@ I have chosen to create an API that is a finance tracker. In the API, users will
 
 ```json
 {
-    "user"; {
+    "user": {
         "userId": "1",
         "name": "abdu",
         "email": "abdu@gmail.com",
@@ -104,7 +104,7 @@ I have chosen to create an API that is a finance tracker. In the API, users will
         "currentSaving" "1$",
         "date": "Today at 09:00 but today"
     }
-};
+}:
 ```
 ---
 API cURL Documentation
@@ -142,3 +142,5 @@ curl -X PUT "https://moneytracker-hw96.onrender.com/user/67e29ff7a3d70fa73b95142
      -H "Authorization: Bearer <Your_Access_Token>" \
      -d '{"username":"testuser1"}'
 ```
+
+
