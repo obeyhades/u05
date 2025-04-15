@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:8000",
+    origin: [process.env.CLIENT_URL!],
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
@@ -33,3 +33,4 @@ mongoose.connect("mongodb+srv://ObeyHades:Hejsan145@u05.vlb7i.mongodb.net/");
 app.listen(PORT, () => {
   console.log(`Application is running on http://localhost:${PORT}`);
 });
+ 

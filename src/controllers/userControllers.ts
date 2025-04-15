@@ -16,6 +16,8 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
   
   const { username, email } = req.body
 
+  console.log(username, email)
+
   try {
     const existingUser = await userModel.findOne({ username });
     if (existingUser) {
@@ -28,6 +30,7 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
     res.json(newUser);
   } catch (error) {
     console.error(error);
+    res.status(500).json('something went wrong when creating the user')
   }
 };
 

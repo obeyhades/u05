@@ -13,12 +13,12 @@ const router = express.Router();
 
 
 router.post("/", createUser);
-router.get("/", getUsers);
+router.post("/", getUsers);
 router.get("/:id",authenticateToken, getUserById);
 router.put("/:id",authenticateToken, updateUser);
 router.delete("/:id",authenticateToken, deleteUser);
 
 router.post("/login", logIn);
 
-
+ 
 export { router as userRouter }; 
