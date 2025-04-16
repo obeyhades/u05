@@ -34,4 +34,4 @@ const logIn = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-export default logIn;
+export default logIn; 

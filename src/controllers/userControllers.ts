@@ -1,9 +1,6 @@
-import mongoose from "mongoose";
 import { userModel } from "../models/userModels";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import authenticateToken from "../middleware/authenticateToken";
-
 
 
 // create user
@@ -28,7 +25,7 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
     const newUser = new userModel({ username, email, password: hashedPassword });
     await newUser.save();
     res.json(newUser);
-  } catch (error) {
+  } catch (error) { 
     console.error(error);
     res.status(500).json('something went wrong when creating the user')
   }
@@ -70,7 +67,7 @@ const updateUser = async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ message: "Could not fetch user! " });
   }
 };
-
+ 
 // Removes a user 
 const deleteUser = async (req: Request, res: Response): Promise<void> => {
   const  userid  = req.params.id;
