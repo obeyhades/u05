@@ -12,7 +12,7 @@ dotenv.config();
 connectDB();
 
 const app: Express = express();
-const PORT: string | number = process.env.PORT || 8000;
+const PORT: string | number = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,7 +25,7 @@ app.use(
 
 app.use("/user", userRouter);
 app.use("/income", userIncome);
-app.use("/expense", expenseRoutes);
+app.use("/expense", expenseRoutes); 
 app.use("/savingGoals", savingGoalRoutes);
 
 mongoose.connect("mongodb+srv://ObeyHades:Hejsan145@u05.vlb7i.mongodb.net/");
@@ -33,4 +33,4 @@ mongoose.connect("mongodb+srv://ObeyHades:Hejsan145@u05.vlb7i.mongodb.net/");
 app.listen(PORT, () => {
   console.log(`Application is running on http://localhost:${PORT}`);
 });
- 
+  
