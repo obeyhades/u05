@@ -10,7 +10,7 @@ const login_1 = __importDefault(require("../controllers/login"));
 const router = express_1.default.Router();
 exports.userRouter = router;
 router.post("/", userControllers_1.createUser);
-router.post("/", userControllers_1.getUsers);
+router.get("/", userControllers_1.getUsers);
 router.get("/:id", userControllers_1.getUserById);
 router.put("/:id", userControllers_1.updateUser);
 router.delete("/:id", userControllers_1.deleteUser);
