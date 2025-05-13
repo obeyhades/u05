@@ -70,7 +70,7 @@ const updateUser = async (req: Request, res: Response): Promise<void> => {
         const salt = await bcrypt.genSalt();
         user.password = await bcrypt.hash(req.body.password, salt);
       }
-
+    
       await user.save()
       res.json(user);
   } catch (error) {
