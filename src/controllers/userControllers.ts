@@ -56,7 +56,7 @@ const getUserById = async (req: Request, res: Response): Promise<void> => {
 
 //Update user
 const updateUser = async (req: Request, res: Response): Promise<void> => {
-
+console.log(req.body);
   try {
       const user = await userModel.findById(req.params.id);
       if(!user) {
@@ -74,6 +74,8 @@ const updateUser = async (req: Request, res: Response): Promise<void> => {
       await user.save()
       res.json(user);
   } catch (error) {
+    console.log(error);
+    
     res.status(500).json({ message: "Could not fetch user! " });
   } 
 };
@@ -82,7 +84,7 @@ const updateUser = async (req: Request, res: Response): Promise<void> => {
 const deleteUser = async (req: Request, res: Response): Promise<void> => {
   const  userid  = req.params.id;
  
-  // add error code
+// add error code
   const deleteUser = await userModel.findByIdAndDelete(userid);
   console.log(deleteUser);
   res.json(deleteUser);
